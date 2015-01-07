@@ -1,33 +1,40 @@
 package com.lambertsoft.app07;
 
+import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 public class MainActivity extends ActionBarActivity {
 
     PendingIntent pendingIntent;
     Context myContext;
+    TextView textIntervalo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button buttonClick = (Button) findViewById(R.id.buttonClick);
+        Button buttonPending = (Button) findViewById(R.id.buttonPending);
+        Button buttonAlarm = (Button) findViewById(R.id.buttonAlarm);
+        textIntervalo = (TextView) findViewById(R.id.textIntervalo);
+
         myContext = getApplicationContext();
 
         Intent intent = new Intent();
         intent.setClass(myContext, DetailActivity.class);
         pendingIntent = PendingIntent.getActivity(myContext, 0, intent, 0);
 
-        buttonClick.setOnClickListener( new View.OnClickListener() {
+        buttonPending.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent voidIntent = new Intent();
@@ -36,6 +43,15 @@ public class MainActivity extends ActionBarActivity {
                 } catch (PendingIntent.CanceledException e) {
                     e.printStackTrace();
                 }
+            }
+        });
+
+        buttonAlarm.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+                int sec = Integer.parseInt(textIntervalo.getText().toString());
+                alarmManager.set(AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 1000 * sec, pendingIntent);
             }
         });
     }

@@ -16,10 +16,44 @@
         style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Click"
-        android:id="@+id/buttonClick"
-        android:layout_marginTop="69dp"
+        android:text="PendingIntent"
+        android:id="@+id/buttonPending"
+        android:layout_marginTop="53dp"
         android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignLeft="@+id/textView"
+        android:layout_alignStart="@+id/textView" />
+
+    <Button
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="AlarmManager"
+        android:id="@+id/buttonAlarm"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/buttonPending"
+        android:layout_alignStart="@+id/buttonPending" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Ingresar Intervalo en segundos:"
+        android:id="@+id/textView2"
+        android:layout_below="@+id/buttonAlarm"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:ems="10"
+        android:id="@+id/textIntervalo"
+        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/textView2"
+        android:layout_alignStart="@+id/textView2"
+        android:text="10"
+        android:layout_alignParentEnd="false"
+        android:layout_alignParentStart="false" />
 
 </RelativeLayout>
